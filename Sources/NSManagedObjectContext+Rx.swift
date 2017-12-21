@@ -60,17 +60,30 @@ public extension Reactive where Base: NSManagedObjectContext {
      Performs transactional update, initiated on a separate managed object context, and propagating thrown errors.
      - parameter updateAction: a throwing update action
      */
-    func performUpdate(updateAction: (NSManagedObjectContext) throws -> Void) throws {
+    func performUpdate(updateAction: @escaping (NSManagedObjectContext) throws -> Void) throws {
         let privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        privateContext.parent = self.base
         
-        try updateAction(privateContext)
+        let base = self.base
+        privateContext.parent = base
         
-        guard privateContext.hasChanges else { return }
+        var error: Error?
+        privateContext.perform {
+            do {
+                try updateAction(privateContext)
+                
+                guard privateContext.hasChanges else { return }
+                
+                try privateContext.save()
+                
+                base.perform {
+                    do { try base.save() }
+                    catch let e { error = e }
+                }
+            }
+            catch let e { error = e }
+        }
         
-        try privateContext.save()
-        
-        try self.base.save()
+        if let error = error { throw error }
     }
 }
 
