@@ -1,6 +1,6 @@
 # RxCoreData
 
-[![CI Status](http://img.shields.io/travis/Scott Gardner/RxCoreData.svg?style=flat)](https://travis-ci.org/Scott Gardner/RxCoreData)
+[![CI Status](http://img.shields.io/travis/RxSwiftCommunity/RxCoreData.svg?style=flat)](https://travis-ci.org/RxSwiftCommunity/RxCoreData)
 [![Version](https://img.shields.io/cocoapods/v/RxCoreData.svg?style=flat)](http://cocoapods.org/pods/RxCoreData)
 [![License](https://img.shields.io/cocoapods/l/RxCoreData.svg?style=flat)](http://cocoapods.org/pods/RxCoreData)
 [![Platform](https://img.shields.io/cocoapods/p/RxCoreData.svg?style=flat)](http://cocoapods.org/pods/RxCoreData)
@@ -11,8 +11,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-* Xcode 8.0
-* Swift 3.0
+* Xcode 9.0
+* Swift 4.0
 
 ## Installation
 
@@ -20,7 +20,7 @@ RxCoreData is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "RxCoreData", "~> 0.3.1"
+pod "RxCoreData", "~> 0.4.0"
 ```
 
 ## Author
